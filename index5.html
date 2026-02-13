@@ -1,0 +1,232 @@
+<!--
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Pantin – Grand écart</title>
+  <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+
+  <style>
+    body { margin: 0; overflow: hidden; }
+
+    /* OVERLAY DE DÉMARRAGE */
+    #startOverlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    #startOverlay button {
+      font-size: 1.5rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+    }
+
+    /* BOUTON MOBILE */
+    #actionBtn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      padding: 14px 24px;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- OVERLAY D'ENTRÉE -->
+<div id="startOverlay">
+  <button id="startBtn">Démarrer l’expérience</button>
+</div>
+
+<!-- BOUTON MOBILE -->
+<button id="actionBtn">Epic Split</button>
+
+<a-scene box-spread="" keyboard-shortcuts="" screenshot="" xr-mode-ui="" device-orientation-permission-ui="">
+
+  <a-video id="video" src="./Epic-BTS3.mp4" position="0 2.54164 -0.37576" scale="5 5 5" autoplay="true" loop="true">
+  </a-video>
+
+  <a-entity rotation="0 180 0">
+
+    <!-- LUMIÈRES -->
+    <a-entity id="ambientLight" light="color: rgb(255, 255, 255); intensity: 0.6; type: ambient"></a-entity>
+    <a-entity id="mainLight" light="color: rgb(255, 255, 255); intensity: 0.9" position="1 3 2"></a-entity>
+
+    <!-- CAISSES -->
+    <a-entity id="boxL">
+      <a-gltf-model src="./scene.glb" scale="0.61647 0.59806 1" gltf-model="./scene.glb"></a-gltf-model>
+      <a-box position="0 0.25 0" width="0.6" height="0.5" depth="0.6" visible="false"></a-box>
+      <a-box id="footL" position="0 0.55 0" width="0.3" height="0.1" depth="0.4" visible="false"></a-box>
+    </a-entity>
+
+    <a-entity id="boxR">
+      <a-gltf-model src="./scene.glb" scale="0.59847 0.60631 1" gltf-model="./scene.glb"></a-gltf-model>
+      <a-box position="0 0.25 0" width="0.6" height="0.5" depth="0.6" visible="false"></a-box>
+      <a-box id="footR" position="0 0.55 0" width="0.3" height="0.1" depth="0.4" visible="false"></a-box>
+    </a-entity>
+
+<a-entity id="pantin" pantin="">
+      <a-entity id="pelvis" material="color: #000000"></a-entity>
+
+      <a-cylinder id="legL" radius="0.08" material="color: #012730">
+        <a-gltf-model src="./piedgg.glb" gltf-model="./piedgg.glb" position="-0.04537 0.39182 -0.10042" rotation="-5.4230455309132415 -87.52732461536509 7.965259267908705"></a-gltf-model>
+      </a-cylinder>
+
+      <a-cylinder id="legR" radius="0.08" material="color: #000000">
+        <a-gltf-model src="./piedd.glb" gltf-model="./piedd.glb" rotation="-2.7713968550477928 78.73700612246799 -5.295848900394199" position="0.33485 -0.5045 0.32478"></a-gltf-model>
+      </a-cylinder>
+
+      <a-cylinder id="trunk" radius="0.12" height="0.4" material="color: #000000" position="0 1.911895003862225 0">
+        <a-gltf-model src="./torp.glb" rotation="0 180 0" gltf-model="./torp.glb" position="0.0355 -0.51785 -0.06258"></a-gltf-model>
+      </a-cylinder>
+    </a-entity>
+
+  </a-entity>
+
+  <!-- Ile -->
+<a-curvedimage src="Flyer.jpg" theta-length:90="" position="0 3 4.30483" geometry="radius: 4; segmentsHeight: 10; thetaLength: 90" scale="1 10 1"></a-curvedimage>
+<a-curvedimage src="Flyer2.jpg" theta-length:90="" position="0 3 4.30483" geometry="radius: 4; segmentsHeight: 10; segmentsRadial: 10; thetaLength: 90" rotation="0 -90 0" scale="1 10 1"></a-curvedimage>
+
+<a-entity id="ile1">
+<a-gltf-model id="ilePR" src="./eol/eol1.glb" scale="45 45 45" position="0 -8.62129 -1.06846" gltf-model="./eol/eol1.glb"></a-gltf-model>
+<a-gltf-model id="eol203" src="./eol203.glb" scale="0.07 0.07 0.07" position="-0.06036 12.44474 -2.09913" rotation="191.34700000000004 -90.00009828442292 -90" gltf-model="./eol203.glb" animation="dur: 5000; easing: linear; loop: true; property: rotation; to: 359 -90 -90"></a-gltf-model> 
+</a-entity>
+
+  
+<a-entity id="ile2" position="-39.85778 19.28006 -21.15096" rotation="0 72.67683152336927 0" scale="0.7 0.7 0.7">
+<a-gltf-model id="ilePR" src="./eol/eol1.glb" scale="45 45 45" position="0 -8.62129 -1.06846" gltf-model="./eol/eol1.glb"></a-gltf-model>
+<a-gltf-model id="eol203" src="./eol203.glb" scale="0.07 0.07 0.07" position="-0.06036 12.44474 -2.09913" rotation="309.81060980000007 -90.00002883664969 -90" gltf-model="./eol203.glb" animation="dur: 5000; easing: linear; loop: true; property: rotation; to: 359 -90 -90"></a-gltf-model> 
+</a-entity>
+  
+  <a-sky src="./paf-pan.jpg"></a-sky>
+
+<a-camera position="0 1.8 4.30483" rotation="48.24304635001533 -15.699043586584576 0"></a-camera>
+  
+</a-scene>
+
+  <!-- 
+  <a-gltf-model id="ile2" src="./eol/eol1.glb" scale="45 45 45" position="29.60722 -0.86266 -19.49266" rotation="0 120.66032799219032 0" gltf-model="./eol/eol1.glb"></a-gltf-model>
+<a-gltf-model id="ile3" src="./eol/eol1.glb" scale="45 45 45" position="-41.30765 12.63532 -64.5409" rotation="0 120.66032799219032 0" gltf-model="./eol/eol1.glb"></a-gltf-model>
+  <a-gltf-model id="eol203" src="./eol203.glb" scale="0.1 0.1 0.1" position="28.94211 20.09732 -19.8238" rotation="0 120 198.13281800000001" gltf-model="./eol203.glb" animation="dur: 5000; easing: linear; loop: true; property: rotation; to: 0 119 198.13281800000001"></a-gltf-model>
+
+  <a-gltf-model id="eol203" src="./eol203.glb" scale="0.05 0.05 0.05" position="0.3185 12.37826 -1.17892" rotation="60.00816171523164 -151.0872517026127 -92.61404392053653" gltf-model="./eol203.glb" animation="dur: 5000; easing: linear; loop: true; property: rotation; to: 60.00816171523164 -151.0872517026127 -92.61404392053653"></a-gltf-model>
+
+  -->
+
+  
+<script>
+/* =========================
+   PARAMÈTRES
+   ========================= */
+const boxWidth = 0.6;
+const legLength = 1.2;
+const minSpread = boxWidth;
+const maxSpread = 2 * legLength;
+
+let spread = 1.2;
+let spreading = false;
+
+/* =========================
+   OVERLAY START
+   ========================= */
+document.getElementById("startBtn").addEventListener("click", () => {
+  const video = document.getElementById("video");
+  video.play();
+  document.getElementById("startOverlay").style.display = "none";
+});
+
+/* =========================
+   BOUTON MOBILE
+   ========================= */
+const btn = document.getElementById("actionBtn");
+btn.addEventListener("mousedown", () => spreading = true);
+btn.addEventListener("mouseup", () => spreading = false);
+btn.addEventListener("touchstart", () => spreading = true);
+btn.addEventListener("touchend", () => spreading = false);
+
+/* =========================
+   CAISSES + LUMIÈRE
+   ========================= */
+AFRAME.registerComponent("box-spread", {
+  tick() {
+    const speed = 0.02;
+    spread += spreading ? speed : -speed;
+    spread = Math.min(Math.max(spread, minSpread), maxSpread);
+
+    boxL.object3D.position.x = -spread / 2;
+    boxR.object3D.position.x =  spread / 2;
+
+    const t = (spread - minSpread) / (maxSpread - minSpread);
+    const color = `rgb(255, ${Math.floor(255*(1-t))}, ${Math.floor(255*(1-t))})`;
+
+    ambientLight.setAttribute("light", "color", color);
+    mainLight.setAttribute("light", "color", color);
+  }
+});
+document.querySelector("a-scene").setAttribute("box-spread", "");
+
+/* =========================
+   PANTIN
+   ========================= */
+AFRAME.registerComponent("pantin", {
+  tick() {
+    const footL = footL_el.object3D.getWorldPosition(new THREE.Vector3());
+    const footR = footR_el.object3D.getWorldPosition(new THREE.Vector3());
+
+    const d = footL.distanceTo(footR);
+    const half = d / 2;
+
+    const pelvisY = d >= 2*legLength
+      ? footL.y
+      : footL.y + Math.sqrt(legLength**2 - half**2);
+
+    pelvis.object3D.position.set(
+      (footL.x + footR.x)/2,
+      pelvisY,
+      0
+    );
+
+    connectLeg("legL", footL);
+    connectLeg("legR", footR);
+
+    trunk.object3D.position.set(
+      pelvis.object3D.position.x,
+      pelvisY + 0.2,
+      0
+    );
+  }
+});
+
+function connectLeg(id, foot) {
+  const leg = document.getElementById(id).object3D;
+  const pelvisPos = pelvis.object3D.position;
+  const mid = foot.clone().add(pelvisPos).multiplyScalar(0.5);
+  leg.position.copy(mid);
+  leg.scale.set(1, foot.distanceTo(pelvisPos), 1);
+  leg.lookAt(pelvisPos);
+  leg.rotateX(Math.PI/2);
+}
+
+/* raccourcis */
+const boxL = document.getElementById("boxL");
+const boxR = document.getElementById("boxR");
+const ambientLight = document.getElementById("ambientLight");
+const mainLight = document.getElementById("mainLight");
+const pelvis = document.getElementById("pelvis");
+const trunk = document.getElementById("trunk");
+const footL_el = document.getElementById("footL");
+const footR_el = document.getElementById("footR");
+</script>
+
+</body>
+</html>

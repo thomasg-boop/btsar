@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; }
+      
+      /* Bouton pour activer la vidéo (obligatoire sur mobile) */
+      #playButton {
+        position: absolute;
+        left: 50%; top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        padding: 15px 25px;
+        font-size: 18px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="playButton">Démarrer l'AR</button>
+
+    <a-scene 
+      mindar-image="imageTargetSrc: ./objets/targets.mind;" 
+      vr-mode-ui="enabled: false" 
+      device-orientation-permission-ui="enabled: false">
+      
+      <a-assets>
+        <video id="video" src="./Epic-BTS3.mp4" 
+               preload="auto" loop="true" 
+               crossorigin="anonymous" playsinline webkit-playsinline>
+        </video>
+        <img id="overlayImg" src="./test-transparance.jpg" crossorigin="anonymous">
+        <img id="overlay" src="./logo.jpg" crossorigin="anonymous">
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity id="target0" mindar-image-target="targetIndex: 0">
+        <a-video src="#video" position="0 0 0.01" width="1" height="0.6"></a-video>
+        <a-image src="#overlayImg" position="0 0 0" scale="1.264 1.688 1"></a-image>
+        <a-image src="#overlay" position="0.50 0.70 0.02" scale="0.25 0.25 0.2"></a-image>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      const video = document.querySelector("#video");
+      const playButton = document.querySelector("#playButton");
+      const targetEntity = document.querySelector("#target0");
+
+      // 1. Débloquer la lecture vidéo via un clic utilisateur (requis par les navigateurs)
+      playButton.addEventListener("click", () => {
+        video.play();
+        video.pause(); // On "prépare" la vidéo sans la lancer tout de suite
+        playButton.style.display = "none";
+      });
+
+      // 2. Lancer la vidéo quand l'image est détectée
+      targetEntity.addEventListener("targetFound", () => {
+        console.log("Cible trouvée !");
+        video.play();
+      });
+
+      // 3. Mettre en pause quand on perd l'image
+      targetEntity.addEventListener("targetLost", () => {
+        console.log("Cible perdue");
+        video.pause();
+      });
+    </script>
+  </body>
+</html>
